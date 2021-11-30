@@ -14,4 +14,5 @@ xtradb_packages:
   #- "percona-server-server-{{ xtradb_version }}"
   - "percona-xtradb-cluster-{{ xtradb_version }}"
   - python3-mysqldb
+xtradb_socket: "/var/run/mysqld/mysqld.sock"
 ...

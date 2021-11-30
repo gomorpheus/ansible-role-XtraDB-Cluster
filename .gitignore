@@ -21,5 +21,4 @@ roles/*.*
 venv
 .idea
 tests
-molecule
 .vscode

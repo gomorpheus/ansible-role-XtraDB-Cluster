@@ -53,6 +53,12 @@ These are the minimum variables needed to create a cluster with a user and datab
 | `xtradb_users`         | []          | List of dicts specifying the users to be added. See below for details.                                      |
 | `xtradb_version` | `57` | Package version of XtraDB |
 | `xtradb_ssl_client_only` | `false` | Disallow non-SSL client connections |
+| `xtradb_tls_enabled` | `false` | Enable TLS encryption for cluster traffic |
+| `xtradb_tls_self_signed` | `false` | Use self-signed SSL certificate from the master node for cluster TLS traffic |
+| `xtradb_tls_custom_cert` | `false` | Use a supplied SSL certificate for cluster TLS traffic |
+| `xtradb_tls_ca_filename` | `""` | CA filename to be copied to the DB nodes from `files/` |
+| `xtradb_tls_cert_filename` | `""` | Certificate filename to be copied to the DB nodes from `files/` |
+| `xtradb_tls_key_filename` | `""` | SSL key filename to be copied to the DB nodes from `files/` |
 
 ### MySQL part
 For more info on the values, read the [MariaDB Server System Variables documentation](https://mariadb.com/kb/en/mariadb/server-system-variables/).

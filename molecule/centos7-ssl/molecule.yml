@@ -3,12 +3,11 @@ dependency:
   name: galaxy
 driver:
   name: docker
-lint:
-  name: yamllint
-  enabled: False
-  options:
-    config-data:
-      ignore: venv
+# lint: |
+#   set -e
+#   yamllint .
+#   ansible-lint
+#   flake8
 platforms:
   - name: instance1
     image: centos:7

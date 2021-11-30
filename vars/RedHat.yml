@@ -17,5 +17,7 @@ xtradb_confdir: /etc/percona-xtradb-cluster.conf.d
 xtradb_config_file: "{{ xtradb_confdir}}/wsrep.cnf"
 xtradb_packages:
   - "Percona-XtraDB-Cluster-{{ xtradb_version }}"
-  - MySQL-python
+  #- MySQL-python
+
+xtradb_socket: "/var/lib/mysql/mysql.sock"
 ...
