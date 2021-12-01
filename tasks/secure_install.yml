@@ -4,19 +4,9 @@
   register: "_xtradb_root_temp_password"
   when:
     - not _xtradb_password_changed.stat.exists
-#  args:
-#    creates: "{{ xtradb_password_changed }}"
 
 - name: Percona | Change Percona Root Pass
   shell: "echo \"ALTER USER 'root'@'localhost' IDENTIFIED BY '{{ xtradb_root_password }}'; FLUSH PRIVILEGES;\" | mysql -u root --password='{{ _xtradb_root_temp_password.stdout }}' --connect-expired-password"
-
-#- name: Set the MySQL root password
-#  shell: 'mysqladmin -u root --password="{{ _xtradb_root_temp_password.stdout }}" password "{{ xtradb_root_password }}"'
-#  when:
-#    - not _xtradb_password_changed.stat.exists
-## PREVIOUSLY COMMENTED
-#  args:
-#    creates: "{{ xtradb_password_changed }}"
 
 - name: Marking as password is changed
   file:
@@ -33,7 +23,6 @@
     name: ""
     host_all: yes
     state: absent
-
 
 - name: "Secure the MySQL root user for localhost"
   mysql_user:
@@ -55,7 +44,6 @@
     login_password: "{{ xtradb_root_password }}"
     login_host: "localhost"
     state: absent
-
 
 - name: Marking as secured
   file:
