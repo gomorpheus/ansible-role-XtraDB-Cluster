@@ -51,6 +51,10 @@
     state: started
   when:
     - xtradb_bind_address != xtradb_master_node
+  failed_when: false
+
+- name: check log
+  command: tail -n 500 /var/log/mysqld.log
 
 - name: Marking as configured
   file:

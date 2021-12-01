@@ -6,7 +6,7 @@ name: Molecule test with CentOS 8 and SSL
 on:
   # Triggers the workflow on push or pull request events but only for the master branch
   push:
-    branches: [ master ]
+    branches: [ master, testmolecule ]
   pull_request:
     branches: [ master ]
 
@@ -33,6 +33,7 @@ jobs:
         # uses: gofrolist/molecule-action@0e1ff1d6047ca4c4c12cb4887d92f1b5cc556ab7
         uses: gofrolist/molecule-action@v2
         with:
+          molecule_options: "--debug"
           molecule_args: "-s centos8-ssl"
         env:
           ANSIBLE_FORCE_COLOR: '1'
