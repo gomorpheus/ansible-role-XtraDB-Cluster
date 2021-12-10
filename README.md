@@ -59,6 +59,7 @@ These are the minimum variables needed to create a cluster with a user and datab
 | `xtradb_tls_ca_filename` | `""` | CA filename to be copied to the DB nodes from `files/` |
 | `xtradb_tls_cert_filename` | `""` | Certificate filename to be copied to the DB nodes from `files/` |
 | `xtradb_tls_key_filename` | `""` | SSL key filename to be copied to the DB nodes from `files/` |
+| `xtradb_configure_firewalld` | `false` | Allow xtradb ports through firewalld for EL 7/8 based distros |
 
 ### MySQL part
 For more info on the values, read the [MariaDB Server System Variables documentation](https://mariadb.com/kb/en/mariadb/server-system-variables/).
