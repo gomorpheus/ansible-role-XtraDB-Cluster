@@ -6,7 +6,7 @@ name: Molecule test with CentOS 8
 on:
   # Triggers the workflow on push or pull request events but only for the master branch
   push:
-    branches: [ master ]
+    branches: [ master, fix-molecule ]
   pull_request:
     branches: [ master ]
 
@@ -28,16 +28,16 @@ jobs:
         with:
           path: "${{ github.repository }}"
 
-      # - name: Ansible Molecule
-      #   # You may pin to the exact commit or the version.
-      #   # uses: gofrolist/molecule-action@0e1ff1d6047ca4c4c12cb4887d92f1b5cc556ab7
-      #   uses: gofrolist/molecule-action@v2
-      #   with:
-      #     molecule_args: "-s centos8"
-      #   env:
-      #     ANSIBLE_FORCE_COLOR: '1'
-      
-      - name: molecule
-        uses: robertdebock/molecule-action@2.7.2
+      - name: Ansible Molecule
+        # You may pin to the exact commit or the version.
+        # uses: gofrolist/molecule-action@0e1ff1d6047ca4c4c12cb4887d92f1b5cc556ab7
+        uses: gofrolist/molecule-action@v2
         with:
-          scenario: centos8
+          molecule_args: "-s centos8"
+        env:
+          ANSIBLE_FORCE_COLOR: '1'
+      
+      # - name: molecule
+      #   uses: robertdebock/molecule-action@2.7.2
+      #   with:
+      #     scenario: centos8

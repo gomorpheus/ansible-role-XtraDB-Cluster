@@ -45,12 +45,24 @@
   when:
     - xtradb_bind_address == xtradb_master_node
 
-- name: Start the slave nodes
-  service:
-    name: "{{ xtradb_service }}"
-    state: started
+- block: 
+    - name: Start the slave nodes
+      service:
+        name: "{{ xtradb_service }}"
+        state: started
+      
+  rescue:
+    - name: Print 1000 lines of logs
+      shell: 'tail -n 1000 /var/log/mysqld.log'
+      register: dumplog
+    - debug: var=dumplog.stdout_lines
+    - name: check startup issue
+      shell: "systemctl status {{ xtradb_service }}"
+      register: systemctllog
+    - debug: var=systemctllog.stdout_lines
+
   when:
-    - xtradb_bind_address != xtradb_master_node
+        - xtradb_bind_address != xtradb_master_node
 
 - name: Marking as configured
   file:
