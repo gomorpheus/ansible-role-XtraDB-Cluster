@@ -9,6 +9,16 @@
     name: "{{ xtradb_service }}"
     state: stopped
 
+- name: "Stopping {{ xtradb_service }} again to make sure"
+  service:
+    name: "{{ xtradb_service }}"
+    state: stopped
+  failed_when: false
+
+- name: Wait for mysql to stop
+  pause:
+    seconds: 10
+
 - name: Generate configuration
   template:
     src:  xtradb.cnf.j2
@@ -62,12 +72,20 @@
   when:
     - xtradb_bind_address == xtradb_master_node
 
-- name: Start the slave nodes
-  service:
-    name: "{{ xtradb_service }}"
-    state: started
+- block: 
+    - name: Start the slave nodes
+      service:
+        name: "{{ xtradb_service }}"
+        state: started
+      
+  rescue:
+    - name: Print 1000 lines of logs
+      shell: 'tail -n 1000 /var/log/mysqld.log'
+      register: dumplog
+    - debug: var=dumplog.stdout_lines
+
   when:
-    - xtradb_bind_address != xtradb_master_node
+        - xtradb_bind_address != xtradb_master_node
 
 - name: Marking as configured
   file:

@@ -6,7 +6,7 @@ name: Molecule test with CentOS 8
 on:
   # Triggers the workflow on push or pull request events but only for the master branch
   push:
-    branches: [ master, fix-molecule ]
+    branches: [ master ]
   pull_request:
     branches: [ master ]
 
@@ -36,8 +36,3 @@ jobs:
           molecule_args: "-s centos8"
         env:
           ANSIBLE_FORCE_COLOR: '1'
-      
-      # - name: molecule
-      #   uses: robertdebock/molecule-action@2.7.2
-      #   with:
-      #     scenario: centos8
