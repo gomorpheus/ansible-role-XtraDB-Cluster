@@ -36,4 +36,3 @@ jobs:
           molecule_args: "-s centos8"
         env:
           ANSIBLE_FORCE_COLOR: '1'
-              

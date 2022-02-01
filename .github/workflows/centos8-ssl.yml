@@ -6,7 +6,7 @@ name: Molecule test with CentOS 8 and SSL
 on:
   # Triggers the workflow on push or pull request events but only for the master branch
   push:
-    branches: [ master ]
+    branches: [ master, fix-molecule ]
   pull_request:
     branches: [ master ]
 
